@@ -8,7 +8,8 @@
 #include <utility>
 #include "hashADT.h"
 
-
+// Los comentarios ausentes acá, estám presentes en ahsh abierto, pues hay muchas similitudes en cuanto a mi implementación de una tabla con la otra
+// Similar al caso anterior, igual este código se basa en lo creado en ayudantía
 typedef std::pair<std::string, std::vector<std::string>> datos;
 class TablaHash_cerrada: public hashADT{
 	
@@ -46,7 +47,8 @@ class TablaHash_cerrada: public hashADT{
 			}
 			
 			
-			// Verificar si hay colisión
+			// Verificar si hay colisión. 
+// 			HACEMOS LINEAR PROBING ANTE COLISIONES
 			while((*hash)[index].first == 'o'){
 				index = (index + 1) % hash_primos[real_size];
 			}
@@ -61,7 +63,7 @@ class TablaHash_cerrada: public hashADT{
 		}
 
 
-		// O(n)   o(1)
+		// O(n)   
 		virtual bool borrar(std::string str){    // Borrar un elemento si es que existe en la tabla hash
 
 			
@@ -81,7 +83,7 @@ class TablaHash_cerrada: public hashADT{
 		// O(n)   o(1)
 		virtual int buscar(std::string str){     // Devuelve la posicion del elemento
 			
-			int index = hash_foo(str);     // Obtenemos el indice del string
+			int index = hash_foo(str)% hash_primos[real_size];     // Obtenemos el indice del string
 
 			// Verificar colisiones
 			while((*hash)[index].first != 'v'){
@@ -154,9 +156,8 @@ class TablaHash_cerrada: public hashADT{
 			
 			int hash_value = 0;
 
-			// tamdato = 
 			// La funcion hash devuelve la sumatoria de cada caracter en ascii multiplicado por su posicion en el arreglo
-			// Inventada por mi, no es una buena funcion hash, es solo con fines demostrativos
+			// La justificación de mi elección de esta mala función se explica en el código anterior
 			for(int i = 1; i <= str.size(); i++)
 				hash_value += str[i - 1] * i;
 
