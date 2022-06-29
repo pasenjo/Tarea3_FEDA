@@ -18,6 +18,9 @@ typedef std::pair<std::string, std::vector<std::string>> datos;
 using namespace std;
 
 
+// funcion para leer datos y separar csv obtenida de
+// https://www.geeksforgeeks.org/split-string-substrings-using-delimiter/
+
 vector<string> splitStrings(string str, char dl)
 {
     string word = ""; 
@@ -123,25 +126,9 @@ int main(){
 		vectorfile.push_back(linestring[6]);
 
 		par = make_pair(linestring[1],vectorfile);
-		// par.first = linestring[2];
-		// par.second[1] = linestring[1];
+		// Si el primer elemento del par tiene índice 1, entonces estamos considerando
+		// User_ID como clave. Si es un 2, entonces estamos considerando User_Name
 
-
-
-		// for(int i=0; i<4; i++){
-			// par.second[i+1] = linestring[i+2];
-		// }
-
-
-		// cout << cont+1 << "." << endl;
-
-
-		// cout << "User Name: " << par.first << " " << endl;
-
-		// cout << "university: " << par.second[0] << endl;
-		// for(int i=0; i<4; i++){
-			// cout << par.second[i+1] << endl1
-		// }
 
 		// cout << "User ID: " << par.second[1] << endl;;
 		// cout << "Number Tweets: " << par.second[2] << endl;
@@ -187,8 +174,6 @@ int main(){
 
 
 	cout << "Tamaño de la tabla hash: " << sizeof(hash) << endl;
-	// std::cout << "Posicion elemento \"renormalizando\": " << hash.buscar("renormalizado") << "\n";
-
 
 
 	my_file.close();
