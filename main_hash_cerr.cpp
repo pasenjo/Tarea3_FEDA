@@ -12,7 +12,8 @@
 #include "hashADT.h"
 
 #include "hash_cerrado_pato.h"
-
+// funcion para leer datos y separar csv obtenida de
+// https://www.geeksforgeeks.org/split-string-substrings-using-delimiter/
 
 typedef std::pair<std::string, std::vector<std::string>> datos;
 using namespace std;
@@ -65,6 +66,7 @@ vector<string> splitStrings(string str, char dl)
 
 
 int main(){
+	// Abrimos el archivo
 	ifstream my_file;
 	my_file.open("universities_followers_2022.csv");
 	char dl = ';';
@@ -78,7 +80,6 @@ int main(){
 	getline(my_file,line);;
 
 	vector<string> linestring;
-	// cout << "UniversityID  UserID " << endl; 
 
 
 
@@ -96,6 +97,7 @@ int main(){
 		string line;
 		getline(my_file, line);
 
+		//linestring será un vector que recibirá en forma ordenada la información de cada línea leída del archivo
 		linestring = splitStrings(line,dl);
 
 		
@@ -127,14 +129,6 @@ int main(){
 		// User_Name
 		par = make_pair(linestring[1],vectorfile);
 		
-
-
-		// cout << "User Name: " << par.first << " " << endl;
-
-		// cout << "university: " << par.second[0] << endl;
-		// for(int i=0; i<4; i++){
-			// cout << par.second[i+1] << endl1
-		// }
 
 		// cout << "User ID: " << par.second[1] << endl;;
 		// cout << "Number Tweets: " << par.second[2] << endl;
