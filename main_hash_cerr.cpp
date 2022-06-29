@@ -115,6 +115,7 @@ int main(){
 		// el vector del type dato tiene tamaño no definido
 		// editado 24/6 22:02  
 		
+		
 		vectorfile.push_back(linestring[0]); //second[0]
 		vectorfile.push_back(linestring[2]); //second[1]
 		vectorfile.push_back(linestring[3]); //second[2]
@@ -122,18 +123,10 @@ int main(){
 		vectorfile.push_back(linestring[5]);
 		vectorfile.push_back(linestring[6]);
 
+		// Si el primer valor del par es un 1, entonces la clave será User_ID. Si es un 2, entonces la clave será
+		// User_Name
 		par = make_pair(linestring[1],vectorfile);
-		// par.first = linestring[2];
-		// par.second[1] = linestring[1];
-
-
-
-		// for(int i=0; i<4; i++){
-			// par.second[i+1] = linestring[i+2];
-		// }
-
-
-		// cout << cont+1 << "." << endl;
+		
 
 
 		// cout << "User Name: " << par.first << " " << endl;
