@@ -1,6 +1,10 @@
 #ifndef __hashitoAbierto__
 #define __hashitoAbierto__
 
+// Nos basamos en el código creado en ayudantía, modificado a las necesidades del problema:
+// Similar a lo descrito en hash_ADT.h, tenemos la pseudo estructura datos que nos ayudará
+// a manipular de mejor manera los datos dados para el problema y le lectura del archivo
+
 
 #include <iostream>
 #include <string>
@@ -26,15 +30,17 @@ class TablaHash_abierta: public hashADT{
 			delete hash;
 		}
 
-
+		// Al insertar datos, debemos ingresar toda una linea del archivo csv, por lo que su input es del tipo datos
 		virtual bool insert(datos dato){
-			
+			// verificamos si se sobrepasa el factor de carga para hacer o no resize
 			float alpha_plus = (float)(size + 1) / hash_primos[real_size];
 
 
 			if(alpha_plus > 0.5){
 				resize();
 			}
+			
+			// Hacemos hashing de la clave primaria, enlazando al índice correspondiente un nuevo dato
 			int index = hash_foo(dato.first) % hash_primos[real_size];
 			(*hash)[index].push_back(dato);
 
@@ -45,6 +51,7 @@ class TablaHash_abierta: public hashADT{
 		}
 
 
+		// para borrar un dato, solo ingresamos la clave asociada al dato que queremos borrar
 		virtual bool borrar(std::string str){
 			int index = buscar(str);
 			if(index == -1){
@@ -54,6 +61,8 @@ class TablaHash_abierta: public hashADT{
 			return true;
 		}
 
+		// para buscar un dato, solo ingresamos la clave del dato que queremos buscar. Retornará el índice de la tabla
+		// hash en la que el dato se encuentra si es que lo encuentra. Caso contrario, se devolverá un cero
 		virtual int buscar(std::string str){
 			int index = hash_foo(str) % hash_primos[real_size];
 
@@ -65,7 +74,6 @@ class TablaHash_abierta: public hashADT{
 
 			 return -1;
 		}
-		// virtual void print();
 	
 	private:
 
@@ -76,14 +84,13 @@ class TablaHash_abierta: public hashADT{
 		virtual void resize(){
 			
 			// Creo una nueva tabla
-			// std::vector<std::list<std::string>> *aux(hash_primos[real_size + 1]);
 
 			std::vector<std::vector<datos>> *aux = new std::vector<std::vector<datos>>(hash_primos[real_size + 1]); 
 
 			// Recorrer la tabla vieja
 			for(int i = 0; i < hash_primos[real_size]; i++){
 				if(!(*hash).empty()){
-
+					// debemos copiar la tabla antigua a aux 
 					for(int j=0; j<(*hash)[i].size(); j++){
 						int index = hash_foo((*hash)[i][j].first)  % hash_primos[real_size+1] ;
 						(*aux)[index].push_back((*hash)[i][j]);
@@ -91,14 +98,17 @@ class TablaHash_abierta: public hashADT{
 					
 				}
 			}
-
+			
+// 			borramos la tabla en desuso, y solo nos QUEDAMOS CON NUESTRA NUEVA TABLA: LA TABLA DEFINITIVA
 			real_size++;
 			delete hash;
 			hash = aux;
 
 		}
 
-
+		
+// 		fUNCIÓN hASH: es la misma (mala) función creaeda en ayudantía: la dejé pues era más ilustrativa para mostrar diferencias significativas
+// 	para comparar. Más funciones hash se pueden encontrar en internet, en sitios web como http://www.partow.net/programming/hashfunctions/index.html
 		virtual int hash_foo(std::string str){
 			int hash_value = 0;
 
