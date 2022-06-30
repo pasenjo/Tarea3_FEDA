@@ -9,11 +9,11 @@
 
 using namespace std;
 
-// #include "arbolBinarioBusqueda.h"
 
 
-
-// Creamos funciones para ler los datos
+// Creamos funciones para leer los datos
+// funcion para leer datos y separar csv obtenida de
+// https://www.geeksforgeeks.org/split-string-substrings-using-delimiter/
 
 
 vector<string> splitStrings(string str, char dl){
@@ -61,6 +61,9 @@ vector<string> splitStrings(string str, char dl){
 
 typedef std::pair<std::string, std::vector<std::string>> datos;
 using namespace std;
+
+// CREAREMOS AQUÍ LA CLASE ÁRBOL BINARIO DE BÚSQUEDA
+
 
 // ---- Metodos Clase Nodo ---- //
 
@@ -217,6 +220,7 @@ int main(){
 	std::cout << "Cantidad de nodos a insertar: ";
 	std::cin >> n;
 
+		// Abrimos el archivo y lo leemos
 	ifstream my_file;
 	my_file.open("universities_followers_2022.csv");
 	char dl = ';';
